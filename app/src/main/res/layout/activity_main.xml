@@ -7,29 +7,40 @@
 
     <TextView android:text="Welcome!" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="103dp"
-        android:id="@+id/welcome" />
+              android:id="@+id/Heading"
+              android:layout_marginTop="81dp"
+              android:textSize="40dp"
+              android:layout_alignParentTop="true"
+              android:layout_centerHorizontal="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Start"
-        android:id="@+id/button"
+        android:id="@+id/ChoiceButton1"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="180dp"
-        android:onClick="goThere" />
+        android:layout_marginBottom="180dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Load"
-        android:id="@+id/button2"
+        android:id="@+id/ChoiceButton2"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button"
+        android:layout_alignLeft="@+id/ChoiceButton1"
+        android:layout_alignStart="@+id/ChoiceButton1"
         android:layout_marginBottom="92dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Put Description Here"
+        android:id="@+id/Description"
+        android:layout_below="@+id/Heading"
+        android:layout_alignLeft="@+id/Heading"
+        android:layout_alignStart="@+id/Heading"
+        android:layout_marginTop="38dp"
+        android:textSize="25dp"/>
 
 </RelativeLayout>
