@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.mutech.mutechdiagnostic.R;
+
 import com.mutech.mutechdiagnostic.UI.DiagnosticActivity;
 import com.mutech.mutechdiagnostic.UI.PatientActivity;
 
@@ -29,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
         // Set a Click listener to monitor if the button is clicked or not
         // If the user click the button, it invokes the "onClick" methods
         // to execute to the specified statements
-
         // Click Listener for the Start Button
         mStartButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,7 @@ public class MainActivity extends ActionBarActivity {
     private void startDiagnostic(){
         Intent intent = new Intent(this, DiagnosticActivity.class);
         startActivity(intent);
+        overridePendingTransition(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
     }
 
     // Directs patient directory or load patient data from a user-specified filepath
@@ -61,6 +63,8 @@ public class MainActivity extends ActionBarActivity {
         startActivity(intent);
     }
 
-
+    protected void onResume() {
+        super.onResume();
+    }
 
 }

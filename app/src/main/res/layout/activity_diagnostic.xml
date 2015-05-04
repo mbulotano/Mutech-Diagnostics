@@ -9,8 +9,42 @@
                 tools:context="com.mutech.mutechdiagnostic.UI.DiagnosticActivity">
 
     <TextView
+        android:id = "@+id/Heading"
         android:text="@string/hello_world"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/Description"
+        android:layout_alignStart="@+id/Description"
+        android:layout_marginTop="110dp" />
+
+    <TextView
+        android:id = "@+id/Description"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Heading"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:id = "@+id/ChoiceButton1"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/ChoiceButton2"
+        android:layout_alignStart="@+id/ChoiceButton2"
+        android:layout_marginBottom="80dp" />
+
+
+    <Button
+        android:id = "@+id/ChoiceButton2"
+        android:text="@string/hello_world"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="168dp" />
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.mutech.mutechdiagnostic.Model.Page;
 import com.mutech.mutechdiagnostic.Model.PageList;
+import com.mutech.mutechdiagnostic.Model.StringResources;
 import com.mutech.mutechdiagnostic.R;
 
 public class DiagnosticActivity extends ActionBarActivity {
@@ -24,7 +25,7 @@ public class DiagnosticActivity extends ActionBarActivity {
     private Button mTopChoice;
     private Button mBottomChoice;
     private Page mCurrentPage;
-
+    private StringResources resource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
