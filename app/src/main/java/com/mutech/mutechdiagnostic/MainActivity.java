@@ -12,6 +12,7 @@ import com.mutech.mutechdiagnostic.UI.PatientActivity;
 
 public class MainActivity extends ActionBarActivity {
 
+    // Member Variables
     private Button mStartButton; // Top Button
     private Button mLoadButton; // Bottom Button
 

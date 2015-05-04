@@ -8,60 +8,72 @@ import android.content.Intent;
  */
 public class Page {
 
+    // Memeber Variables
     private String mHeading;
     private String mDescription;
-    private Choice mChoice1;
-    private Choice mChoice2;
-    private Intent mIntent;
+    private Choice[] mChoices;
+    private Intent[] mIntents;
+    private boolean mIsFinal = false;       //boolean to check if it is the final page
 
-    public Page(String heading, String description, Choice choice1, Choice choice2){
+    // Constructors
+    // The first constructor has a null intent
+    // The second one will have initialized intent for processes other than displaying texts.
+    public Page(String heading, String description, Choice[] choices){
         this.mHeading = heading;
         this.mDescription = description;
-        this.mChoice1 =  choice1;
-        this.mChoice2 = choice2;
-        this.mIntent = null;
-
+        this.mChoices = choices;
+        this.mIntents = null;
     }
 
-    public Page(String heading, String description, Choice choice2, Choice choice1, Intent intent) {
+    public Page(String heading, String description, Choice[] choices, Intent[] intents) {
         mHeading = heading;
         mDescription = description;
-        mChoice2 = choice2;
-        mChoice1 = choice1;
-        this.mIntent = intent;
+        this.mChoices = choices;
+        this.mIntents = intents;
     }
+
 
     // Getter
-    public String getHeading() { return mHeading; }
-
-    public String getDescription() { return mDescription; }
-
-    public Choice getChoice1() {
-        return mChoice1;
+    public String getHeading() {
+        return mHeading;
     }
 
-    public Choice getChoice2() {
-        return mChoice2;
+    public boolean isFinal() {
+        return mIsFinal;
     }
 
-    public Intent getIntent() { return mIntent; }
+    public Intent[] getIntents() {
+        return mIntents;
+    }
+
+    public Choice[] getChoices() {
+        return mChoices;
+    }
+
+    public String getDescription() {
+        return mDescription;
+    }
 
 
     // Setter
-    public void setHeading(String heading) { mHeading = heading; }
+    public void setHeading(String heading) {
+        mHeading = heading;
+    }
 
-    public void setChoice1(Choice choice1) {
-        mChoice1 = choice1;
+    public void setIsFinal(boolean isFinal) {
+        mIsFinal = isFinal;
+    }
+
+    public void setIntents(Intent[] intents) {
+        mIntents = intents;
+    }
+
+
+    public void setChoices(Choice[] choices) {
+        mChoices = choices;
     }
 
     public void setDescription(String description) {
         mDescription = description;
     }
-
-    public void setChoice2(Choice choice2) {
-        mChoice2 = choice2;
-    }
-
-    public void setIntent(Intent intent) { mIntent = intent; }
-
 }

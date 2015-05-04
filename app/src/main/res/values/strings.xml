@@ -8,4 +8,27 @@
     <string name="load_button">LOAD</string>
     <string name="title_activity_step_screen">StepScreenActivity</string>
     <string name="title_activity_patient">PatientActivity</string>
+
+    <string name="page_0_heading">Where would you like to start?</string>
+    <string name="page_0_description">Write Description Here</string>
+    <string name="page_0_choice1">Sample Not Taken</string>
+    <string name="page_0_choice2">Sample Already Taken</string>
+
+    <string name="page_1_heading">HIV Test Tutorial: Picture Analysis</string>
+    <string name="page_1_description">Make sure your smartphone has a camera.</string>
+    <string name="page_1_choice1">Next Step</string>
+
+    <string name="page_2_heading">Begin Picture Analysis</string>
+    <string name="page_2_description">Please Insert Chip into Holster </string>
+    <string name="page_2_choice1">Next Step</string>
+
+    <string name="page_3_heading">Write Heading Here</string>
+    <string name="page_3_description">Write Description Here</string>
+    <string name="page_3_choice1">Next Step</string>
+
+    <string name="page_4_heading">Taking Picture...</string>
+    <string name="page_4_description">Please Wait =) </string>
+    <string name="page_4_Tip">Did you know that HIV affects...</string>
+
+
 </resources>
