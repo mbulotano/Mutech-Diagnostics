@@ -8,52 +8,43 @@ public class StringResources {
     public String page0heading() {
         return "Where would you like to start?";
     }
-
     public String page0description() {
-        return "Write Description Here";
+        return "";
     }
-
     public String page0choice1() {
-        return "Sample Taken";
+        return "Microfluidics Processing";
     }
-
     public String page0choice2() {
-        return "Sample Already Taken";
+        return "Photoanalysis";
     }
 
     public String page1heading() {
         return "HIV Tutorial: Picture Analysis";
     }
-
     public String page1description() {
-        return "Make sure your phone has a camera";
+        return "Make sure your phone has a camera.\nPlease Insert the microfluidics chip into the holster.";
     }
-
     public String page1choice1() {
         return "Next";
     }
 
     public String page2heading() {
-        return "Begin Picture Analysis";
+        return "Beginning Picture Analysis";
     }
-
     public String page2description() {
-        return "Where would you like to start?";
+        return "Taking photo . . .";
     }
-
     public String page2choice1() {
-        return "Where would you like to start?";
+        return "Next";
     }
 
     public String page3heading() {
-        return "Where would you like to start?";
+        return "Is this a good photo?";
     }
-
     public String page3description() {
-        return "Where would you like to start?";
+        return "Make sure the photo has proper lighting and no artifacts.";
     }
-
     public String page3choice1() {
-        return "Where would you like to start?";
+        return "Next";
     }
 }

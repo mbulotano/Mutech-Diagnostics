@@ -7,6 +7,7 @@ package com.mutech.mutechdiagnostic.UI;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -34,8 +35,8 @@ public class DiagnosticActivity extends ActionBarActivity {
 
         mHeading = (TextView) findViewById(R.id.Heading);
         mDescription = (TextView) findViewById(R.id.Description);
-        mTopChoice = (Button) findViewById(R.id.ChoiceButton1);
-        mBottomChoice = (Button) findViewById(R.id.ChoiceButton2);
+        mTopChoice = (Button) findViewById(R.id.ChoiceButton2);
+        mBottomChoice = (Button) findViewById(R.id.ChoiceButton1);
 
         loadPage(0);
     }
@@ -53,28 +54,87 @@ public class DiagnosticActivity extends ActionBarActivity {
         // Else.... load the page as the next page.
         else{
             // Set Text for Heading and Description TextView objects
+            // HEADING and DESCRIPTION ALWAYS EXIST, so this code is always executed
             mHeading.setText(mCurrentPage.getHeading());
             mDescription.setText(mCurrentPage.getDescription());
 
+            //Align the heading/description
+
+            mHeading.setGravity(Gravity.CENTER);
+            mDescription.setGravity(Gravity.CENTER);
+
             // Set Text for Top and Bottom Buttons
-            mTopChoice.setText(mCurrentPage.getChoices()[0].getText());
-            mBottomChoice.setText(mCurrentPage.getChoices()[1].getText());
+            // TOP BUTTON may not always exist! So let's make a case-by-case checker:
+            switch(choice) {
+                case 0: setTitle("MuTech Diagnostic");
+                        mTopChoice.setText(mCurrentPage.getChoices()[0].getText());
+                        mBottomChoice.setText(mCurrentPage.getChoices()[1].getText());
+                        mTopChoice.setGravity(Gravity.CENTER);
+                        mBottomChoice.setGravity(Gravity.CENTER);
 
-            mTopChoice.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Put your code here//
-                    loadPage(mCurrentPage.getChoices()[0].getNextStep());
-                }
-            });
+                        mTopChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here//
+                                System.out.println("Next step: " + mCurrentPage.getChoices()[0].getNextStep());
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                            }
+                        });
 
-            mBottomChoice.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // Put your code here //
-                    loadPage(mCurrentPage.getChoices()[1].getNextStep());
-                }
-            });
+                        mBottomChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                System.out.println("Next step: " + mCurrentPage.getChoices()[1].getNextStep());
+                                loadPage(mCurrentPage.getChoices()[1].getNextStep());
+                            }
+                        }); System.out.println("ERROR!"); break;
+                case 1: setTitle("Photoanalysis, Step 1");
+                        mTopChoice.setVisibility(View.GONE);
+                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+
+                        mBottomChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                            }
+                        }); break;
+                case 2: setTitle("Photoanalysis, Step 2");
+                        mTopChoice.setVisibility(View.GONE);
+                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+
+                        mBottomChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                            }
+                        }); break;
+                case 3: setTitle("Photoanalysis, Step 3");
+                        mTopChoice.setVisibility(View.GONE);
+                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+
+                        mBottomChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                            }
+                        }); break;
+                case 4: setTitle("Photoanalysis, Step 4");
+                        mTopChoice.setVisibility(View.GONE);
+                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+
+                        mBottomChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                            }
+                        }); break;
+                default: System.out.println("ERROR!"); break;
+            }
 
 
             if (!(mCurrentPage.getIntents() == null)){

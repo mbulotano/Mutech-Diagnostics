@@ -74,16 +74,16 @@ public class PageList {
         // ****** Initial Tutorial Screen: Video or picture? ****** //
         // The tutorial will guide user on how to use the device.
         mPages[1].getChoices()[0].setText(resource.page1choice1());
-        mPages[1].getChoices()[0].setNextStep(3);
+        mPages[1].getChoices()[0].setNextStep(2);
 
 
         // ****** Initial Picture Analysis Screen ****** //
         mPages[2].getChoices()[0].setText(resource.page2choice1());
-        mPages[2].getChoices()[0].setNextStep(4);
+        mPages[2].getChoices()[0].setNextStep(3);
 
         // ****** Tutorial Step #2 Screen ****** //
         mPages[3].getChoices()[0].setText(resource.page3choice1());
-        mPages[3].getChoices()[0].setNextStep(5);
+        mPages[3].getChoices()[0].setNextStep(4);
 
 
         // ****** Capture Picture Screen ****** //
