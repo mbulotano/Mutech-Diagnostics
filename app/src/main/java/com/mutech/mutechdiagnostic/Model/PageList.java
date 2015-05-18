@@ -51,7 +51,7 @@ public class PageList {
         mPages[3] = new Page(
                 resource.page3heading(),
                 resource.page3description(),
-                new Choice[1]);
+                new Choice[2]);
 
         mPages[4] = new Page(
                 resource.page2heading(),
@@ -84,6 +84,8 @@ public class PageList {
         // ****** Tutorial Step #2 Screen ****** //
         mPages[3].getChoices()[0].setText(resource.page3choice1());
         mPages[3].getChoices()[0].setNextStep(4);
+        mPages[3].getChoices()[1].setText(resource.page3choice2());
+        mPages[3].getChoices()[1].setNextStep(2);
 
 
         // ****** Capture Picture Screen ****** //

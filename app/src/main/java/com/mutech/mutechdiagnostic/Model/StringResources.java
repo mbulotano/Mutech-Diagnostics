@@ -45,6 +45,9 @@ public class StringResources {
         return "Make sure the photo has proper lighting and no artifacts.";
     }
     public String page3choice1() {
-        return "Next";
+        return "Yes";
+    }
+    public String page3choice2() {
+        return "No";
     }
 }

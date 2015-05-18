@@ -5,11 +5,19 @@ package com.mutech.mutechdiagnostic.UI;
  * Last Updated by ZawMai 5/01/2015
  */
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mutech.mutechdiagnostic.Model.Page;
@@ -26,6 +34,7 @@ public class DiagnosticActivity extends ActionBarActivity {
     private Button mTopChoice;
     private Button mBottomChoice;
     private Page mCurrentPage;
+    private ImageView mImageView;
     private StringResources resource;
 
     @Override
@@ -37,10 +46,32 @@ public class DiagnosticActivity extends ActionBarActivity {
         mDescription = (TextView) findViewById(R.id.Description);
         mTopChoice = (Button) findViewById(R.id.ChoiceButton2);
         mBottomChoice = (Button) findViewById(R.id.ChoiceButton1);
-
+        mImageView = (ImageView)findViewById(R.id.imageViewG);
+        ActionBar bar = getSupportActionBar();
+        bar.setLogo(R.drawable.mutechtransparency4);
+        bar.setDisplayUseLogoEnabled(true);
+        bar.setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         loadPage(0);
     }
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
+        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
+            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    @Override
+     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            mImageView.setImageBitmap(photo);
+        }
+    }
 
     private void loadPage(int choice){
         mCurrentPage = mPages.getPage(choice);
@@ -108,17 +139,38 @@ public class DiagnosticActivity extends ActionBarActivity {
                             @Override
                             public void onClick(View v) {
                                 // Put your code here //
-                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                                dispatchTakePictureIntent();
+                                Handler handler = new Handler();
+                                handler.postDelayed(new Runnable() {
+
+                                    @Override
+                                    public void run() {
+                                        loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                                    }
+
+                                }, 5000); // 5000ms delay
                             }
                         }); break;
                 case 3: setTitle("Photoanalysis, Step 3");
-                        mTopChoice.setVisibility(View.GONE);
+                        mTopChoice.setVisibility(View.VISIBLE);
+                        mImageView.setVisibility(View.VISIBLE);
+                        mTopChoice.setText(mCurrentPage.getChoices()[1].getText());
                         mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
 
+
+                        mTopChoice.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                // Put your code here //
+                                mImageView.setVisibility(View.GONE);
+                                loadPage(mCurrentPage.getChoices()[1].getNextStep());
+                            }
+                        });
                         mBottomChoice.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 // Put your code here //
+                                mImageView.setVisibility(View.GONE);
                                 loadPage(mCurrentPage.getChoices()[0].getNextStep());
                             }
                         }); break;
