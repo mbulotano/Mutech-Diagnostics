@@ -7,7 +7,11 @@ package com.mutech.mutechdiagnostic.UI;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Handler;
 import android.provider.MediaStore;
@@ -18,6 +22,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.mutech.mutechdiagnostic.Model.Page;
@@ -36,6 +41,7 @@ public class DiagnosticActivity extends ActionBarActivity {
     private Page mCurrentPage;
     private ImageView mImageView;
     private StringResources resource;
+    private Bitmap photoMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +57,14 @@ public class DiagnosticActivity extends ActionBarActivity {
         bar.setLogo(R.drawable.mutechtransparency4);
         bar.setDisplayUseLogoEnabled(true);
         bar.setDisplayShowHomeEnabled(true);
+        RelativeLayout rl = (RelativeLayout)findViewById(R.id.diagnosticlayout);
+        rl.setBackgroundColor(Color.WHITE);
         //getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.RED));
         loadPage(0);
     }
 
+
+    //Photo Classes
     static final int REQUEST_IMAGE_CAPTURE = 1;
 
     private void dispatchTakePictureIntent() {
@@ -65,12 +75,39 @@ public class DiagnosticActivity extends ActionBarActivity {
         }
     }
 
+    //This loads the photo
     @Override
      protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             Bitmap photo = (Bitmap) data.getExtras().get("data");
+            photoMap = photo;
             mImageView.setImageBitmap(photo);
         }
+    }
+
+    private void test(Bitmap bMap) {
+        int pixel = 0;
+        int r = 0;
+        int g = 0;
+        int b = 0;
+        int totalBlue = 0;
+        int height = bMap.getHeight();
+        int width = bMap.getWidth();
+
+        for(int w = 0; w < bMap.getWidth(); w++) {
+            for(int h = 0; h < bMap.getHeight(); h++) {
+                pixel = bMap.getPixel(w, h);
+                r = Color.red(pixel);
+                g = Color.green(pixel);
+                b = Color.blue(pixel);
+                totalBlue += b;
+                if(b > 170) {
+                    System.out.println("R: " + r + " B: " + b + " G: " + g);
+                }
+            }
+        }
+        totalBlue = totalBlue/(height*width);
+        System.out.println("Average blue: " + totalBlue);
     }
 
     private void loadPage(int choice){
@@ -90,7 +127,6 @@ public class DiagnosticActivity extends ActionBarActivity {
             mDescription.setText(mCurrentPage.getDescription());
 
             //Align the heading/description
-
             mHeading.setGravity(Gravity.CENTER);
             mDescription.setGravity(Gravity.CENTER);
 
@@ -157,7 +193,6 @@ public class DiagnosticActivity extends ActionBarActivity {
                         mTopChoice.setText(mCurrentPage.getChoices()[1].getText());
                         mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
 
-
                         mTopChoice.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -177,14 +212,19 @@ public class DiagnosticActivity extends ActionBarActivity {
                 case 4: setTitle("Photoanalysis, Step 4");
                         mTopChoice.setVisibility(View.GONE);
                         mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
-
+                        test(photoMap);
                         mBottomChoice.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 // Put your code here //
+                                //Do image analysis here
                                 loadPage(mCurrentPage.getChoices()[0].getNextStep());
                             }
                         }); break;
+                case 5: setTitle("Photoanalysis, Step 5");
+                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+
+                        break;
                 default: System.out.println("ERROR!"); break;
             }
 

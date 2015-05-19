@@ -22,7 +22,7 @@ public class PageList {
     // The page array REQUIRES further population with pages according to the design
     public PageList(){
 
-        mPages = new Page[5];
+        mPages = new Page[6];
         //App applica = new App();
         //Resources resource = applica.getContext().getResources();
         StringResources resource = new StringResources();
@@ -59,38 +59,52 @@ public class PageList {
                 new Choice[1],
                 new Intent[1]);
 
+        mPages[5] = new Page(
+                resource.page5heading(),
+                resource.page5description(),
+                new Choice[1]);
+
         for(int q = 0; q < mPages.length; q++) {
             for (int i = 0; i < mPages[q].getChoices().length; i++) {
                 mPages[q].getChoices()[i] = new Choice("test", 0);
             }
         }
-        // ****** Where would you like to start screen ****** //
+        // ****** Where would you like to start screen, microfluidics or photoanalysis? ****** //
         mPages[0].getChoices()[0].setText(resource.page0choice1());
         mPages[0].getChoices()[0].setNextStep(0);
         mPages[0].getChoices()[1].setText(resource.page0choice2());
         mPages[0].getChoices()[1].setNextStep(1);
 
 
-        // ****** Initial Tutorial Screen: Video or picture? ****** //
+        // ****** Photoanalysis Tutorial, Step 1:  ****** //
         // The tutorial will guide user on how to use the device.
         mPages[1].getChoices()[0].setText(resource.page1choice1());
         mPages[1].getChoices()[0].setNextStep(2);
 
 
         // ****** Initial Picture Analysis Screen ****** //
+        //Starts camera intent
         mPages[2].getChoices()[0].setText(resource.page2choice1());
         mPages[2].getChoices()[0].setNextStep(3);
 
-        // ****** Tutorial Step #2 Screen ****** //
+        // ****** Picture confirmation Step ****** //
+        //User confirms whether the photo taken is good
         mPages[3].getChoices()[0].setText(resource.page3choice1());
         mPages[3].getChoices()[0].setNextStep(4);
         mPages[3].getChoices()[1].setText(resource.page3choice2());
         mPages[3].getChoices()[1].setNextStep(2);
 
 
+        // ****** Begin Picture Analysis ****** //
+        mPages[4].setDescription(resource.page4heading());
+        mPages[4].setDescription(resource.page4description());
+        mPages[4].getChoices()[0].setText(resource.page4choice1());
+        mPages[4].getChoices()[0].setNextStep(5);
+
         // ****** Capture Picture Screen ****** //
-        // mPages[4].getChoices()[0].setText(resource.getString(R.string.page_4_Tip));
-        mPages[4].getChoices()[0].setNextStep(6);
+        mPages[5].getChoices()[0].setText(resource.page5choice1());
+        mPages[5].getChoices()[0].setNextStep(6);
+
         // create Intent to take a picture and return control to the calling application
         //mPages[4].getIntents()[0].setAction(MediaStore.ACTION_IMAGE_CAPTURE);
 
