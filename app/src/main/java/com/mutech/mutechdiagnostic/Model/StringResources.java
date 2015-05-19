@@ -66,15 +66,15 @@ public class StringResources {
         return "Next";
     }
 
-    /*** PAGE 5 ***/
+    /*** PAGE 5 Loading screen***/
     public String page5heading() {
-        return "Blah";
+        return "Loading . . .";
     }
     public String page5description() {
-        return "Blah";
-    }
-    public String page5choice1() {
-        return "Blah";
+        return "";
     }
 
+    /*** PAGES 6 Results ***/
+    public String page6heading() { return "Results"; }
+    public String page6description() { return "Probability: 0%\nConcentration Levels: 0%"; }
 }

@@ -222,8 +222,23 @@ public class DiagnosticActivity extends ActionBarActivity {
                             }
                         }); break;
                 case 5: setTitle("Photoanalysis, Step 5");
-                        mBottomChoice.setText(mCurrentPage.getChoices()[0].getText());
+                        mTopChoice.setVisibility(View.GONE);
+                        mBottomChoice.setVisibility(View.GONE);
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
 
+                            @Override
+                            public void run() {
+                                loadPage(mCurrentPage.getChoices()[0].getNextStep());
+                                 }
+
+                        }, 5000); // 5000ms delay
+                        break;
+                case 6: setTitle("Photoanalysis, Results");
+                        mTopChoice.setVisibility(View.VISIBLE);
+                        mBottomChoice.setVisibility(View.VISIBLE);
+                        mTopChoice.setText(mCurrentPage.getChoices()[0].getText());
+                        mBottomChoice.setText(mCurrentPage.getChoices()[1].getText());
                         break;
                 default: System.out.println("ERROR!"); break;
             }

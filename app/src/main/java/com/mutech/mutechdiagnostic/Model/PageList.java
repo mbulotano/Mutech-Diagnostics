@@ -22,7 +22,7 @@ public class PageList {
     // The page array REQUIRES further population with pages according to the design
     public PageList(){
 
-        mPages = new Page[6];
+        mPages = new Page[7];
         //App applica = new App();
         //Resources resource = applica.getContext().getResources();
         StringResources resource = new StringResources();
@@ -64,6 +64,11 @@ public class PageList {
                 resource.page5description(),
                 new Choice[1]);
 
+        mPages[6] = new Page(
+                resource.page6heading(),
+                resource.page6description(),
+                new Choice[2]);
+
         for(int q = 0; q < mPages.length; q++) {
             for (int i = 0; i < mPages[q].getChoices().length; i++) {
                 mPages[q].getChoices()[i] = new Choice("test", 0);
@@ -102,8 +107,13 @@ public class PageList {
         mPages[4].getChoices()[0].setNextStep(5);
 
         // ****** Capture Picture Screen ****** //
-        mPages[5].getChoices()[0].setText(resource.page5choice1());
         mPages[5].getChoices()[0].setNextStep(6);
+
+        // results
+
+        mPages[6].getChoices()[0].setText("Take new test");
+        mPages[6].getChoices()[1].setText("Save");
+        mPages[6].getChoices()[0].setNextStep(0);
 
         // create Intent to take a picture and return control to the calling application
         //mPages[4].getIntents()[0].setAction(MediaStore.ACTION_IMAGE_CAPTURE);
