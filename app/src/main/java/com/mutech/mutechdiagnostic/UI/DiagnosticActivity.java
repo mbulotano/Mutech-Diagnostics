@@ -25,6 +25,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.mutech.mutechdiagnostic.Model.Histogram;
 import com.mutech.mutechdiagnostic.Model.Page;
 import com.mutech.mutechdiagnostic.Model.PageList;
 import com.mutech.mutechdiagnostic.Model.StringResources;
@@ -86,28 +87,9 @@ public class DiagnosticActivity extends ActionBarActivity {
     }
 
     private void test(Bitmap bMap) {
-        int pixel = 0;
-        int r = 0;
-        int g = 0;
-        int b = 0;
-        int totalBlue = 0;
-        int height = bMap.getHeight();
-        int width = bMap.getWidth();
+        Histogram myHist = new Histogram(16, bMap);
+        myHist.printStuff();
 
-        for(int w = 0; w < bMap.getWidth(); w++) {
-            for(int h = 0; h < bMap.getHeight(); h++) {
-                pixel = bMap.getPixel(w, h);
-                r = Color.red(pixel);
-                g = Color.green(pixel);
-                b = Color.blue(pixel);
-                totalBlue += b;
-                if(b > 170) {
-                    System.out.println("R: " + r + " B: " + b + " G: " + g);
-                }
-            }
-        }
-        totalBlue = totalBlue/(height*width);
-        System.out.println("Average blue: " + totalBlue);
     }
 
     private void loadPage(int choice){
